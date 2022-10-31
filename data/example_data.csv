@@ -1,0 +1,5 @@
+DevCode,SetupYear,Contract,EquipmentCount,MissionCount,Mean,Significancy
+All,All,True,499,6144,12.31,True
+All,All,False,997,9086,9.11,True
+All,2020,True,40,361,9.02,False
+All,2020,False,78,656,8.41,False

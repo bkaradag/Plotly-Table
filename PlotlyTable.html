@@ -1,0 +1,56 @@
+<html>
+  <script src='https://cdn.plot.ly/plotly-2.14.0.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+<body>
+
+  <div id="myDiv"></div>
+
+  <script>
+  d3.csv("/data/example_data.csv",function(err, rows){
+  
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+  }
+
+  var headerNames = d3.keys(rows[0]);
+
+  var headerValues = [];
+  var cellValues = [];
+  for (i = 0; i < headerNames.length; i++) {
+    headerValue = [headerNames[i]];
+    headerValues[i] = headerValue;
+    cellValue = unpack(rows, headerNames[i]);
+    cellValues[i] = cellValue;
+  }
+
+  var data = [{
+  type: 'table',
+  columnwidth: 100,
+  columnorder: [0,1,2,3,4,5,6],
+  header: {
+    values: headerValues,
+    align: "center",
+    line: {width: 1, color: 'rgb(50, 50, 50)'},
+    fill: {color: ['rgb(0, 66, 188)']},
+    font: {family: "Arial", size: 14, color: "white"}
+  },
+  cells: {
+    values: cellValues,
+    align: ["center", "center"],
+    line: {color: "black", width: 1},
+    fill: {color: ['rgba(228, 222, 249, 0.65)']},
+    font: {family: "Arial", size: 11, color: ["black"]}
+  }
+  }]
+
+  var layout = {
+  title: "Significancy Test"
+  }
+
+  Plotly.newPlot('myDiv', data, layout);
+  });
+
+  </script>
+</body>
+</html>
